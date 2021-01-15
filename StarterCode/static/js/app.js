@@ -15,6 +15,14 @@ function optionChanged(otu_value) {
 //Grab data
 d3.json("samples.json").then(function(data) {
     console.log(data);
+  // creating filter for top 10 otu's
+function filtertopOTUs(otu) {
+  return movie.imdbRating > 8.9;
+}
+
+// 2. Use filter() to pass the function as its argument
+var filteredMovies = topMovies.filter(filterMovieRatings);
+
     
   var dropdown_id = data.samples.map(info => info.id);
   console.log(dropdown_id);
