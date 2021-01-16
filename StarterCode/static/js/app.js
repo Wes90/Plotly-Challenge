@@ -10,24 +10,39 @@ function optionChanged(otu_value) {
     console.log('error');
   }
 }
+ 
+// creating filter for top 10 otu's
+function filtertopOTUs(otu) {
+  return otu.otu_ids ;
+}
+
 
 
 //Grab data
 d3.json("samples.json").then(function(data) {
     console.log(data);
-  // creating filter for top 10 otu's
-function filtertopOTUs(otu) {
-  return movie.imdbRating > 8.9;
+//Initialize page with default plot
+function init(){
+  test = [{
+    x: [1, 2, 3, 4, 5],
+    y: [1, 2, 4, 8, 16] }];
+
+  Plotly.newPlot("bar", test);
 }
+init(); 
+d3.selectAll("#selDataset").on("change", optionChanged);
 
-// 2. Use filter() to pass the function as its argument
-var filteredMovies = topMovies.filter(filterMovieRatings);
+//Use filter() to pass the function as its argument
+var filteredotu = data.samples.filter(filtertopOTUs);
+// console.log(filteredotu);
 
+var datatest = filteredotu.map(info => info.sample_values);
+console.log(datatest);
     
-  var dropdown_id = data.samples.map(info => info.id);
-  console.log(dropdown_id);
+var dropdown_id = data.samples.map(info => info.id);
+// console.log(dropdown_id);
 
-  var sel = d3.select('#selDataset');
+var sel = d3.select('#selDataset');
     
 //Append data to dropdown menu
 
@@ -45,7 +60,7 @@ let otulabel = data.samples.map(info => info.otu_labels);
 
 
 });
-    
+ 
   
   
    
