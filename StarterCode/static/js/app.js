@@ -38,7 +38,8 @@ function optionChanged(sub_id) {
   var slicedData = id_data[0].sample_values.slice(0,10);
   var reversedData = slicedData.reverse();
   // var reversedData = otu_id_labels.reverse();
-  // Plot data
+
+  // Bar chart
   var trace1 = {
     x:sampleValue,
     y:otuID,
@@ -49,7 +50,6 @@ function optionChanged(sub_id) {
   var data = [trace1];
 
   var layout = {
-    // title: "Greek gods search results",
     margin: {
       l: 100,
       r: 100,
@@ -59,7 +59,7 @@ function optionChanged(sub_id) {
   };
   
   Plotly.newPlot("bar", data, layout);
-
+// Bubble chart
   var trace1 = {
     x: otuID,
     y: sampleValue,
@@ -80,7 +80,43 @@ function optionChanged(sub_id) {
   };
   
   Plotly.newPlot('bubble', data, layout);
-    
+  
+  //Guage chart 
+  var data = [
+    {
+      type: "indicator",
+      mode: "gauge+number+delta",
+      value: 420,
+      title: { text: "Speed", font: { size: 24 } },
+      delta: { reference: 400, increasing: { color: "RebeccaPurple" } },
+      gauge: {
+        axis: { range: [null, 500], tickwidth: 1, tickcolor: "darkblue" },
+        bar: { color: "darkblue" },
+        bgcolor: "white",
+        borderwidth: 2,
+        bordercolor: "gray",
+        steps: [
+          { range: [0, 250], color: "cyan" },
+          { range: [250, 400], color: "royalblue" }
+        ],
+        threshold: {
+          line: { color: "red", width: 4 },
+          thickness: 0.75,
+          value: 490
+        }
+      }
+    }
+  ];
+  
+  var layout = {
+    width: 500,
+    height: 400,
+    margin: { t: 25, r: 25, l: 25, b: 25 },
+    paper_bgcolor: "lavender",
+    font: { color: "darkblue", family: "Arial" }
+  };
+  
+  Plotly.newPlot('myDiv', data, layout);  
 };
  
 
