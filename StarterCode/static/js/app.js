@@ -33,13 +33,15 @@ function optionChanged(sub_id) {
   console.log('otu value is', sub_id);
   console.log("top 10 otu's" ,otuID,sampleValue,otuLabel);
   
+  
+  
   var slicedData = id_data[0].sample_values.slice(0,10);
   var reversedData = slicedData.reverse();
   // var reversedData = otu_id_labels.reverse();
   // Plot data
   var trace1 = {
     x:sampleValue,
-    y:reversedData,
+    y:otuID,
     type: "bar",
     orientation: "h"
   };
@@ -57,7 +59,28 @@ function optionChanged(sub_id) {
   };
   
   Plotly.newPlot("bar", data, layout);
+
+  var trace1 = {
+    x: otuID,
+    y: sampleValue,
+    mode: 'markers',
+    marker: {
+      size: sampleValue,
+      color: otuID,
+    }
+  };
   
+  var data = [trace1];
+  
+  var layout = {
+    title: 'Marker Size',
+    showlegend: false,
+    height: 600,
+    width: 1100
+  };
+  
+  Plotly.newPlot('bubble', data, layout);
+    
 };
  
 
