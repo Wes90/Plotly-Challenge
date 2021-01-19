@@ -1,10 +1,4 @@
 //Grab data
-
-
-
-
-
-
 var navel_data;
 d3.json("samples.json").then(function(data) {
   navel_data = data;
@@ -13,7 +7,7 @@ d3.json("samples.json").then(function(data) {
 
     
 var dropdown_id = data.samples.map(info => info.id);
-// console.log(dropdown_id);
+    // console.log(dropdown_id);
 
 // Landing bar graph
 var sel = d3.select('#selDataset');
@@ -25,11 +19,17 @@ var label_grab = navel_data.samples.map(s => s.otu_labels);
 var first_sample_values = x_grab[0].slice(0,10);
 var first_otu_ids = y_grab[0].slice(0,10);
 var first_labels = label_grab[0].slice(0,10);
- 
+
+var first_otu_list =[]
+  
+  first_otu_ids.forEach(myfunction);
+  function myfunction(item){
+    first_otu_list.push('OTU '+ item);
+  }
 var bar_test = ['wes', 'olivia', 'jacob', 'julia', 'bailey', 'shane', 'folsom', 'kate', 'greg', 'fox']
 var trace1 = {
   x: first_sample_values,
-  y: bar_test,
+  y: first_otu_list,
   type: "bar",
   orientation: "h"
 };
@@ -75,7 +75,7 @@ var data = [
     type: "indicator",
     mode: "gauge+number+delta",
     value: 420,
-    title: { text: "Speed", font: { size: 24 } },
+    title: { text: "Belly Button Washing Frequency", font: { size: 24 } },
     delta: { reference: 400, increasing: { color: "RebeccaPurple" } },
     gauge: {
       axis: { range: [null, 500], tickwidth: 1, tickcolor: "darkblue" },
@@ -106,7 +106,6 @@ var layout = {
 
 Plotly.newPlot('gauge', data, layout);  
 
-
 //Append data to dropdown menu
 
     dropdown_id.forEach(function(otu_id) {
@@ -118,8 +117,8 @@ Plotly.newPlot('gauge', data, layout);
 
 //Create optionChanged function
 function optionChanged(sub_id) {
-  // var parse_otu_value = +otu_value;
-  //Create variables
+  
+//Create variables
   var id_data = navel_data.samples.filter(s => s.id == sub_id);
   var otuID = id_data[0].otu_ids.slice(0,10);
   var sampleValue = id_data[0].sample_values.slice(0,10);
@@ -128,9 +127,15 @@ function optionChanged(sub_id) {
   console.log(demo_data);
   console.log('otu value is', sub_id);
   console.log("top 10 otu's" ,otuID,sampleValue,otuLabel);
-  var otu_string = (label) => 'OTU' + label;
-  console.log(otu_string(otuID));
-  
+ 
+  var otu_list =[]
+
+  otuID.forEach(myfunction);
+  function myfunction(item){
+    otu_list.push('OTU '+ item);
+  }
+  // console.log(otu_list);
+
 
   var slicedData = id_data[0].sample_values.slice(0,10);
   var reversedData = slicedData.reverse();
@@ -141,10 +146,10 @@ function optionChanged(sub_id) {
   demo_sel.append('li').text(demo_data[0][0]);
   demo_sel.html("");
 
-  // Bar chart
+// Bar chart
   var trace1 = {
     x:sampleValue,
-    y: otu_string,
+    y: otu_list,
     type: "bar",
     orientation: "h"
   };
@@ -185,7 +190,7 @@ function optionChanged(sub_id) {
   
   Plotly.newPlot('bubble', data, layout);
   
-  //Guage chart 
+//Guage chart 
   var data = [
     {
       type: "indicator",
