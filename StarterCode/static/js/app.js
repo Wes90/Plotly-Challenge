@@ -139,8 +139,9 @@ function optionChanged(sub_id) {
 // Demographic info
   var demo_data = navel_data.metadata.filter(s => s.id == sub_id); 
   console.log(demo_data);
-
-  d3.select(".panel-body").text('something');
+  var demo = ['list of stuff', 'more stuff']
+  
+  d3.select(".panel-body").text(demo);
 
 // Bar chart
   var trace1 = {
