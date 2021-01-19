@@ -9,8 +9,8 @@ d3.json("samples.json").then(function(data) {
 var dropdown_id = data.samples.map(info => info.id);
     // console.log(dropdown_id);
 
-// Landing bar graph
-var sel = d3.select('#selDataset');
+
+
 // Landing variables
 var x_grab = navel_data.samples.map(s => s.sample_values);
 var y_grab = navel_data.samples.map(s => s.otu_ids);
@@ -27,6 +27,7 @@ var first_otu_list =[]
     first_otu_list.push('OTU '+ item);
   }
 
+// Landing bar graph
 var trace1 = {
   x: first_sample_values,
   y: first_otu_list,
@@ -107,7 +108,7 @@ var layout = {
 Plotly.newPlot('gauge', data, layout);  
 
 // Append data to dropdown menu
-
+var sel = d3.select('#selDataset');
     dropdown_id.forEach(function(otu_id) {
       sel.append('option').property('value', otu_id).text(otu_id);
     });
@@ -123,8 +124,7 @@ function optionChanged(sub_id) {
   var otuID = id_data[0].otu_ids.slice(0,10);
   var sampleValue = id_data[0].sample_values.slice(0,10);
   var otuLabel = id_data[0].otu_labels.slice(0,10);
-  var demo_data = navel_data.metadata.filter(s => s.id == sub_id); 
-  console.log(demo_data);
+  
   console.log('otu value is', sub_id);
   console.log("top 10 otu's" ,otuID,sampleValue,otuLabel);
  
@@ -136,16 +136,12 @@ function optionChanged(sub_id) {
   }
   // console.log(otu_list);
 
-
-  var slicedData = id_data[0].sample_values.slice(0,10);
-  var reversedData = slicedData.reverse();
-  // var reversedData = otu_id_labels.reverse();
-
 // Demographic info
-  var demo_sel = d3.select('#sample-metadata').append('ul');
-  demo_sel.append('li').text(demo_data[0][0]);
-  demo_sel.html("");
-  
+  var demo_data = navel_data.metadata.filter(s => s.id == sub_id); 
+  console.log(demo_data);
+
+  d3.select(".panel-body").text('something');
+
 // Bar chart
   var trace1 = {
     x:sampleValue,
@@ -221,7 +217,7 @@ function optionChanged(sub_id) {
     width: 400,
     height: 400,
     margin: { t: 25, r: 25, l: 25, b: 25 },
-    paper_bgcolor: "lavender",
+    paper_bgcolor: "white",
     font: { color: "darkblue", family: "Arial" }
   };
   
