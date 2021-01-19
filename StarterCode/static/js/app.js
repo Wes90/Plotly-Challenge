@@ -127,7 +127,8 @@ function optionChanged(sub_id) {
   
   console.log('otu value is', sub_id);
   console.log("top 10 otu's" ,otuID,sampleValue,otuLabel);
- 
+
+// list for bar graph labels
   var otu_list =[]
 
   otuID.forEach(myfunction);
@@ -140,8 +141,8 @@ function optionChanged(sub_id) {
   var demo_data = navel_data.metadata.filter(s => s.id == sub_id); 
   console.log(demo_data);
   var demo = ['list of stuff', 'more stuff']
-  
-  d3.select(".panel-body").text(demo);
+  var demo2 =['more stuff again']
+  d3.select(".panel-body").text(demo, demo2);
 
 // Bar chart
   var trace1 = {
