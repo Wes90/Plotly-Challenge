@@ -138,14 +138,16 @@ function optionChanged(sub_id) {
   // console.log(otu_list);
 
 // Demographic info
+
+  var demo_sel = d3.select(".panel-body").text(demo_data);
   var demo_data = navel_data.metadata.filter(s => s.id == sub_id); 
- 
-  // console.log(demo_data);
-  var demo = []
-  var demo2 =['more stuff again']
-  d3.select(".panel-body").text(demo2);
-  demo.push(demo_data);
-  console.log(demo);
+  var demo_test = demo_data[0];
+  console.log(demo_test);
+
+  for (const [key, value] of Object.entries(demo_test)) {
+    console.log(`${key}: ${value}`);
+    demo_sel.append('h6').text(`${key}: ${value}`);
+  }
 
 // Bar chart
   var trace1 = {
