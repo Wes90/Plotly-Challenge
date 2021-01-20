@@ -27,6 +27,18 @@ var first_otu_list =[]
     first_otu_list.push('OTU '+ item);
   }
 
+// Landing demographic info
+var first_demo_sel = d3.select(".panel-body").text(first_demo_data);
+var first_demo_data_grab = navel_data.metadata;
+var first_demo_data = first_demo_data_grab[0];
+var first_demo_test = first_demo_data[0];
+  console.log(first_demo_data);
+
+  for (const [key, value] of Object.entries(first_demo_test)) {
+    console.log(`${key}: ${value}`);
+    first_demo_sel.append('h6').text(`${key}: ${value}`);
+  }
+
 // Landing bar graph
 var trace1 = {
   x: first_sample_values,
@@ -138,11 +150,10 @@ function optionChanged(sub_id) {
   // console.log(otu_list);
 
 // Demographic info
-
   var demo_sel = d3.select(".panel-body").text(demo_data);
   var demo_data = navel_data.metadata.filter(s => s.id == sub_id); 
   var demo_test = demo_data[0];
-  console.log(demo_test);
+  // console.log(demo_test);
 
   for (const [key, value] of Object.entries(demo_test)) {
     console.log(`${key}: ${value}`);
