@@ -28,16 +28,15 @@ var first_otu_list =[]
   }
 
 // Landing demographic info
-// var first_demo_sel = d3.select(".panel-body").text(first_demo_data);
-// var first_demo_data_grab = navel_data.metadata;
-// var first_demo_data = first_demo_data_grab[0];
-// var first_demo_test = first_demo_data[0];
-//   console.log(first_demo_data);
+var first_demo_sel = d3.select(".panel-body").text(first_demo_data);
+var first_demo_data_grab = navel_data.metadata;
+var first_demo_data = first_demo_data_grab[0];
+var first_demo_test = first_demo_data[0];
+  console.log(first_demo_data);
 
-//   for (const [key, value] of Object.entries(first_demo_test)) {
-//     console.log(`${key}: ${value}`);
-//     first_demo_sel.append('h6').text(`${key}: ${value}`);
-//   }
+// first_demo_test.forEach([key, value]) => first_demo_sel.append('h6').text(`${key}: ${value}`);
+  
+  
 
 // Landing bar graph
 var trace1 = {
