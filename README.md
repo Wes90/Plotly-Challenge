@@ -14,3 +14,5 @@ This graph shows the top 10 OTUs (operational taxonomic units) and the amount fo
 
 Bubble Chart
 The bubble chart utilizes the same data as the bar chart but with more color and different perspective. Hovering the cursor over a bubble will also show the OTU label.
+
+Link to dashboard: https://wes90.github.io/Plotly-Challenge/
